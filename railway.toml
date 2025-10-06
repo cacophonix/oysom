@@ -1,8 +1,5 @@
 [build]
-builder = "NIXPACKS"
+builder = "nodejs"
 
-[build.nixpacksPlan.phases.setup]
-nixPkgs = ["nodejs", "npm"]
-
-[build.nixpacksPlan.phases.install]
-cmds=["npm install --legacy-peer-deps"]
+[start]
+cmd = "npm run start"

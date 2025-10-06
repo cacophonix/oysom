@@ -13,7 +13,7 @@
     "medusa"
   ],
   "scripts": {
-    "build": "npx medusa build",
+    "build": "tsc",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "cd .medusa/server && npm install && npm run predeploy && npm run start",
     "dev": "medusa develop",
