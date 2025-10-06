@@ -1,5 +1,8 @@
 [build]
-builder = "nodejs"
+builder = "NIXPACKS"
+
+[build.nixpacks]
+plan = ["nodejs"]
 
 [start]
-cmd = "npm run start"
+command = "npm run start"
