@@ -1,0 +1,53 @@
+https://docs.medusajs.com/resources/recipes/ecommerce
+
+NPM_CONFIG_USERCONFIG=./.npmrc npx create-medusa-app@latest --with-nextjs-starter --db-url "postgresql://neondb_owner:npg_0vM7kJshgcZd@ep-plain-rice-a1ptl2b0.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+
+
+http://localhost:9000/app/login
+
+npx medusa db:setup
+
+npx medusa db:setup --db-url "postgresql://neondb_owner:npg_0vM7kJshgcZd@ep-plain-rice-a1ptl2b0.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+
+npx medusa db:setup --no-interactive
+
+
+```bash
+npx medusa user create --email admin@yourstore.com --password your-secure-password
+```
+
+
+pkill -f "npm\|yarn\|node\|medusa\|next"
+```shell
+lsof -ti:9000 | xargs kill -9
+```
+
+
+npm run seed
+
+pkill -f "ojsom-storefront" 2>/dev/null || true
+
+
+
+curl -X GET "http://localhost:9000/store/shipping-options?cart_id=cart_01K68G0YWCGX6WY4FRD8W4H1WD" -H "x-publishable-api-key: pk_23f20edad63a132dbd6ce70e0f1e58104d53cd55b9461fce4f684b08c9f73555" -H "Content-Type: application/json"
+
+
+```shell
+cd ojsom && npx medusa db:reset --force
+```
+
+psql "postgresql://neondb_owner:npg_gPqTKLzpt5v9@ep-lively-wind-a170t56w-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require" -c "DELETE FROM cart WHERE id = 'cart_01K6A67KY59NJK62B1EZKN7S1A';"
+
+```shell
+cd ojsom && npx medusa user -e admin@test.com -p password123
+```
+
+https://docs.medusajs.com/learn/deployment/general
+
+https://oysom-production.up.railway.app/app/orders
+
+
+
+
+
+
