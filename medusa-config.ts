@@ -2,6 +2,16 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
+// Helper to validate worker mode
+const getWorkerMode = (): "server" | "shared" | "worker" | undefined => {
+  const mode = process.env.MEDUSA_WORKER_MODE;
+  if (!mode) return undefined;
+  if (mode === "server" || mode === "shared" || mode === "worker") {
+    return mode;
+  }
+  return undefined;
+};
+
 module.exports = defineConfig({
   admin: {
     backendUrl: process.env.MEDUSA_BACKEND_URL,
@@ -9,7 +19,7 @@ module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
     redisUrl: process.env.REDIS_URL,
-    workerMode: process.env.MEDUSA_WORKER_MODE as "server" | "shared" | "worker" | undefined,
+    workerMode: getWorkerMode(),
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
