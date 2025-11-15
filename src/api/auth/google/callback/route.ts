@@ -26,7 +26,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   try {
     passport.authenticate("google", { session: false }, async (err: any, profile: any) => {
       if (err || !profile) {
-        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || "http://localhost:3001"
+        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || (process.env.NODE_ENV === "production" ? "https://www.oysom.com" : "http://localhost:3001")
         return res.redirect(`${frontendUrl}/account?auth=error&message=${encodeURIComponent(err?.message || "Authentication failed")}`)
       }
 
@@ -37,7 +37,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
         const lastName = profile.name?.familyName || profile.displayName?.split(" ").slice(1).join(" ") || ""
         
         if (!email) {
-          const frontendUrl = process.env.STORE_CORS?.split(",")[0] || "http://localhost:3001"
+          const frontendUrl = process.env.STORE_CORS?.split(",")[0] || (process.env.NODE_ENV === "production" ? "https://www.oysom.com" : "http://localhost:3001")
           return res.redirect(`${frontendUrl}/account?auth=error&message=${encodeURIComponent("No email provided by Google")}`)
         }
 
@@ -106,17 +106,17 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
         res.setHeader("Set-Cookie", `_medusa_jwt=${authToken}; ${cookieOptions}`)
 
         // Redirect to frontend with success
-        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || "http://localhost:3001"
+        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || (process.env.NODE_ENV === "production" ? "https://www.oysom.com" : "http://localhost:3001")
         return res.redirect(`${frontendUrl}/account?auth=google_success`)
       } catch (error: any) {
         console.error("Error in Google OAuth flow:", error)
-        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || "http://localhost:3001"
+        const frontendUrl = process.env.STORE_CORS?.split(",")[0] || (process.env.NODE_ENV === "production" ? "https://www.oysom.com" : "http://localhost:3001")
         return res.redirect(`${frontendUrl}/account?auth=error&message=${encodeURIComponent(error.message || "Failed to authenticate")}`)
       }
     })(req, res)
   } catch (err: any) {
     console.error("Google OAuth callback error:", err)
-    const frontendUrl = process.env.STORE_CORS?.split(",")[0] || "http://localhost:3001"
+    const frontendUrl = process.env.STORE_CORS?.split(",")[0] || (process.env.NODE_ENV === "production" ? "https://www.oysom.com" : "http://localhost:3001")
     return res.redirect(`${frontendUrl}/account?auth=error&message=${encodeURIComponent("Authentication error")}`)
   }
 }
