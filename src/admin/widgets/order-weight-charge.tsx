@@ -17,9 +17,8 @@ function calculateWeightCharge(items: any[]): number {
   const extraWeightGrams = Math.max(0, totalWeightGrams - 1000)
   const extraWeightKG = Math.ceil(extraWeightGrams / 1000)
   const chargeInTaka = extraWeightKG * 20
-  const chargeInPaisa = chargeInTaka * 100
   
-  return chargeInPaisa
+  return chargeInTaka
 }
 
 function getTotalWeight(items: any[]): number {
@@ -47,7 +46,7 @@ function formatCurrency(amount: number, currencyCode: string): string {
     currency: currencyCode.toUpperCase(),
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  }).format(amount / 100)
+  }).format(amount)
 }
 
 const OrderWeightChargeWidget = ({ data }: DetailWidgetProps<AdminOrder>) => {
